@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfApp13.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp13"
+        mc:Ignorable="d"
+        Title="Номенклатура - IT Park" Height="450" Width="800" Background="Silver"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="+ Добавить" ToolTip="Добавить новую номенклатуру" Click="Button_Click"/>
+                <Separator/>
+                <Button Content="V Редактировать" ToolTip="Отредактировать выделенную номенклатуру" Click="Button_Click_1"/>
+                <Separator/>
+                <Button Content="- Удалить" ToolTip="Удалить номенклатуру" Click="Button_Click_2"/>
+            </ToolBar>            
+        </ToolBarTray>
+        <DataGrid Name="grdNomencl" AutoGenerateColumns="False" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id_nomenclature}" Header="ID" Width="30"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Наименование" Width="*"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Цена" Width="*"/>
+                <DataGridTextColumn Binding="{Binding fromDate, StringFormat={}{0:dd.MM.yyyy}}" Header="Начальная дата" Width="*"/>
+                <DataGridTextColumn Binding="{Binding toDate,   StringFormat={}{0:dd.MM.yyyy}}" Header="Конечная дата" Width="*"/>
+            </DataGrid.Columns>            
+        </DataGrid>
+    </DockPanel>
+</Window>

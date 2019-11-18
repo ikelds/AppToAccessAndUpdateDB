@@ -1,0 +1,68 @@
+﻿<Window x:Class="WpfApp13.AddEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp13"
+        mc:Ignorable="d"
+        Title="Форма для ввода данных" Height="350" Width="400"
+        FocusManager.FocusedElement="{Binding ElementName=IdTxtBx}">
+    <Window.Resources>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBox x:Name="PART_TextBox"
+                            Text="{Binding Path=SelectedDate, StringFormat='dd MMM yyyy', 
+                            RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock>Введите данные для добавления или редактирования</TextBlock>
+
+        <TextBlock Grid.Row="2">ID - указывается только при редактировании данных</TextBlock>
+        <TextBox Name="IdTxtBx" Grid.Row="3"
+                 PreviewKeyDown="IdTxtBx_PreviewKeyDown"
+                 PreviewTextInput="IdTxtBx_PreviewTextInput"/>
+        
+        <TextBlock Grid.Row="4">Наименование</TextBlock>
+        <TextBox Name="nameTxtBx" Grid.Row="5"/>
+
+        <TextBlock Grid.Row="6">Цена</TextBlock>
+        <TextBox Name="priceTxtBx" Grid.Row="7"
+                 PreviewKeyDown="IdTxtBx_PreviewKeyDown"
+                 PreviewTextInput="PriceTxtBx_PreviewTextInput"/>
+
+        <TextBlock Grid.Row="8">Начальная дата</TextBlock>
+        <DatePicker Name="fromDateTxtBx" Grid.Row="9" SelectedDate="{Binding Path=., StringFormat=dd-MM-yyyy}"/>
+
+        <TextBlock Grid.Row="10">Конечная дата</TextBlock>
+        <DatePicker Name="toDateTxtBx" Grid.Row="11"/>
+
+        <WrapPanel Grid.Row="12" HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button IsDefault="True" Click="AddEdit_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
+            <Button IsCancel="True" MinWidth="60">Отмена</Button>
+        </WrapPanel>
+    </Grid>
+    
+</Window>
